@@ -37,5 +37,21 @@ public class Main {
         Thread th2 = new Thread(r); // pass runnable object of inner class
         th2.start();
 
+        // with anonymous class
+        Thread th3 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i <= 5; i++) {
+                    System.out.println("Hi from Anonymous Class!");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        th3.start();
+
     }
 }
