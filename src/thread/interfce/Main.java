@@ -1,7 +1,7 @@
 package thread.interfce;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         Runnable obj = new C(); // create object of interface
         Runnable obj1 = new D();
@@ -66,6 +66,33 @@ public class Main {
         }
 
         new Thread(() -> new Main().show("Hi again using Lambada Expression!")).start();
+
+        /*
+        join will wait for the thread to complete, and only then the main thread will execute
+         */
+
+        // get thread name
+        System.out.println(th.getName());
+        // set thread name
+        th.setName("HI THREAD 0");
+        System.out.println(th.getName());
+
+        // thread priority
+        System.out.println(th.getPriority());
+        System.out.println(th1.getPriority());
+
+        System.out.println("Before :" +th.isAlive());
+
+        th.join();
+
+        System.out.println("After :" +th.isAlive());
+
+        th1.join();
+        th2.join();
+        th3.join();
+        th4.join();
+        System.out.println("Bye");
+
     }
 
     public void show(String str) {
@@ -78,5 +105,4 @@ public class Main {
             }
         }
     }
-
 }
