@@ -53,5 +53,30 @@ public class Main {
         });
         th3.start();
 
+        // lambada expression -- Java1.8 update
+        Thread th4 = new Thread(() -> {
+            new Main().show("Hi using Lambada Expression!");
+        });
+        th4.start();
+
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        new Thread(() -> new Main().show("Hi again using Lambada Expression!")).start();
     }
+
+    public void show(String str) {
+        for (int i = 0; i <= 5; i++) {
+            System.out.println(str);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
